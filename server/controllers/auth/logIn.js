@@ -21,8 +21,20 @@ const logIn = async (req, res) => {
     if (!isPasswordMatched)
       return res.status(404).json({ message: "Wrong Credentials!" });
 
-    const accessToken = createAccessToken({ name: user.name, email });
-    const refreshToken = createRefreshToken({ name: user.name, email });
+    const accessToken = createAccessToken({
+      name: user.name,
+      email,
+      isAdmin: user.isAdmin,
+      id: user._id,
+    });
+    const refreshToken = createRefreshToken({
+      name: user.name,
+      email,
+      isAdmin: user.isAdmin,
+    });
+
+    // Destructuring the new user and remove password filed for returning user
+    const { password: p, ...resultentUser } = user["_doc"];
 
     res
       .status(201)
@@ -32,7 +44,7 @@ const logIn = async (req, res) => {
         sameSite: "strict",
         expires: new Date(new Date().getTime() + 24 * 7 * 60 * 60 * 1000),
       })
-      .json({ name: user.name, email: user.email, accessToken });
+      .json({ ...resultentUser, accessToken });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

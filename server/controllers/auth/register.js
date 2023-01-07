@@ -23,8 +23,20 @@ const register = async (req, res) => {
     const newUser = new User({ name, email, password: hashPassword });
     await newUser.save();
 
-    const accessToken = createAccessToken({ name, email });
-    const refreshToken = createRefreshToken({ name, email });
+    const accessToken = createAccessToken({
+      name,
+      email,
+      isAdmin: newUser.isAdmin,
+      id: newUser._id,
+    });
+    const refreshToken = createRefreshToken({
+      name,
+      email,
+      isAdmin: newUser.isAdmin,
+    });
+
+    // Destructuring the new user and remove password filed for returning user
+    const { password: p, ...resultentUser } = newUser["_doc"];
 
     res
       .status(201)
@@ -34,7 +46,7 @@ const register = async (req, res) => {
         sameSite: "strict",
         expires: new Date(new Date().getTime() + 24 * 7 * 60 * 60 * 1000),
       })
-      .json({ name: newUser.name, email: newUser.email, accessToken });
+      .json({ ...resultentUser, accessToken });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

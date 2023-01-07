@@ -12,6 +12,8 @@ const refresh = (req, res) => {
     const newAccessToken = createAccessToken({
       name: decoded.name,
       email: decoded.email,
+      isAdmin: decoded.isAdmin,
+      id: decoded.id,
     });
     return res.status(200).json({ access_token: newAccessToken });
   });
