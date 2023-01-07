@@ -26,10 +26,14 @@ const blogSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    comments: {
+      type: Array,
+      default: [Object],
+    },
     tags: {
       type: Array,
       required: true,
-      default: [],
+      default: [String],
       max: 3,
     },
   },

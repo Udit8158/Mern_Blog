@@ -1,9 +1,9 @@
 import express from "express";
-import register from "../controllers/register.js";
 import { body } from "express-validator";
-import logIn from "../controllers/logIn.js";
-import refresh from "../controllers/refresh.js";
-import logOut from "../controllers/logOut.js";
+import register from "../controllers/auth/register.js";
+import logIn from "../controllers/auth/logIn.js";
+import refresh from "../controllers/auth/refresh.js";
+import logOut from "../controllers/auth/logOut.js";
 
 const authRoute = express();
 
