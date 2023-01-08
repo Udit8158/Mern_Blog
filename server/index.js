@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import authRoute from "./routes/auth.js";
 import userRoute from "./routes/user.js";
+import blogRoute from "./routes/blog.js";
 
 // Initialize app
 const app = express();
@@ -24,5 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/users", userRoute);
+app.use("/api/v1/blogs", blogRoute);
+
 // Listen on server
 app.listen(port, () => console.log(`Server listening on port ${port}!`));

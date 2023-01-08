@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const blogSchema = mongoose.Schema(
   {
@@ -19,7 +19,7 @@ const blogSchema = mongoose.Schema(
     },
     coverPicture: {
       type: String,
-      required: true,
+      // required: true,
       default: "",
     },
     likes: {
@@ -30,11 +30,11 @@ const blogSchema = mongoose.Schema(
       type: Array,
       default: [Object],
     },
-    tags: {
-      type: Array,
+    catagories: {
+      type: [String],
       required: true,
-      default: [String],
-      max: 3,
+      default: [],
+      max: 5,
     },
   },
   { timeStamps: true }
