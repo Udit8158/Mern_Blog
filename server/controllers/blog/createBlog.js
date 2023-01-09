@@ -10,6 +10,9 @@ const createBlog = async (req, res) => {
     if (!errors.isEmpty())
       return res.status(400).json({ errors: errors.array() });
 
+    if (await Blog.findOne({ title: req.body.title }))
+      return res.status(409).json({ message: "Blog already exists!" });
+
     // Creates a new blog post
     const newBlogPost = await new Blog({
       title: req.body.title,
