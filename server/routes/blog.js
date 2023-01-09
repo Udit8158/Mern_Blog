@@ -40,7 +40,7 @@ blogRoute
 blogRoute.route("/:blogId/like").get(verifyToken, likeBlog);
 blogRoute
   .route("/:blogId/comment")
-  .get(
+  .post(
     verifyToken,
     [body("text").isString().isLength({ min: 3, max: 100 })],
     addComment
