@@ -23,8 +23,8 @@ const blogSchema = mongoose.Schema(
       default: "",
     },
     likes: {
-      type: Number,
-      default: 0,
+      type: [String],
+      default: [],
     },
     comments: {
       type: Array,

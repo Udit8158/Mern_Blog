@@ -7,6 +7,11 @@ const updateBlog = async (req, res) => {
     const { blogId } = req.params;
     const { user } = req;
 
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+      return res.status(400).json({ errors: errors.array() });
+
     // Update the blog
     if ((title, content, catagories)) {
       const blog = await Blog.findById(blogId);
