@@ -1,8 +1,10 @@
 import { validationResult } from "express-validator";
 import Blog from "../../models/Blog.js";
+import User from "../../models/User.js";
 
 const createBlog = async (req, res) => {
   try {
+    const { user } = req;
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
     if (!errors.isEmpty())
@@ -17,6 +19,11 @@ const createBlog = async (req, res) => {
       catagories: req.body.catagories ? req.body.catagories : [],
     });
     await newBlogPost.save();
+
+    // Add the blog post to the user's creation
+    const currUser = await User.findOne({ name: user.name });
+    currUser.blogs.push(newBlogPost);
+    await currUser.save();
 
     return res.status(201).json(newBlogPost);
   } catch (error) {

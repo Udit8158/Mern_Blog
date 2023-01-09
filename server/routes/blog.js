@@ -1,8 +1,8 @@
 import express from "express";
 import { body } from "express-validator";
+import addComment from "../controllers/blog/addComment.js";
 import createBlog from "../controllers/blog/createBlog.js";
 import deleteBlog from "../controllers/blog/deleteBlog.js";
-import dislikeBlog from "../controllers/blog/dislike.js";
 import getAllBlogs from "../controllers/blog/getAllBlogs.js";
 import getSingleBlog from "../controllers/blog/getSingleBlog.js";
 import likeBlog from "../controllers/blog/likeBlog.js";
@@ -38,5 +38,12 @@ blogRoute
 
 // Like and dislike of the blog
 blogRoute.route("/:blogId/like").get(verifyToken, likeBlog);
+blogRoute
+  .route("/:blogId/comment")
+  .get(
+    verifyToken,
+    [body("text").isString().isLength({ min: 3, max: 100 })],
+    addComment
+  );
 
 export default blogRoute;
