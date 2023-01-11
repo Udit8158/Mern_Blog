@@ -9,18 +9,20 @@ export default function EditBlog() {
         <img
           src="https://images.unsplash.com/photo-1672522688899-b1b6bd1e2042?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
           alt="Blog Cover Image"
-          className="w-full h-80"
+          className="w-full h-80 object-cover"
         />
 
         <div className="flex justify-between mt-2">
           <label htmlFor="file">
-            <input type="file" id="file" name="file" />
-            <button className="p-2 bg-blue-500 rounded-lg">
-              <PhotoLibraryIcon />
-            </button>
+            <PhotoLibraryIcon
+              className="p-2 bg-blue-500 rounded-lg hover:bg-blue-600"
+              fontSize="large"
+            />
           </label>
-          <button className="p-2 bg-red-600 rounded-lg">
-            <CloseIcon />
+          <input type="file" id="file" name="file" className="hidden" />
+          {/* <CloseIcon className="p-2 bg-red-600 rounded-lg" fontSize="large" /> */}
+          <button className="p-2 bg-teal-400 hover:bg-teal-500 rounded-lg">
+            Publish
           </button>
         </div>
       </div>
