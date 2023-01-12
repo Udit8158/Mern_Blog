@@ -5,7 +5,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 export default function Blog() {
   return (
-    <div className="flex flex-col gap-2 items-center">
+    <div className="flex flex-col md:gap-2  items-center cursor-pointer">
       <div className="flex items-center justify-start w-full gap-3">
         <img src={img} alt="profile" className="w-10 rounded-full" />
         <p>Joy Ebertz</p>
@@ -26,7 +26,7 @@ export default function Blog() {
         </div>
         {/* image */}
         <div>
-          <img src={img} alt="blog_image" className="w-48" />
+          <img src={img} alt="blog_image" className="w-28 md:w-48" />
         </div>
       </div>
 

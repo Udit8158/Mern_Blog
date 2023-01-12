@@ -1,21 +1,24 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import profile from "../profile.jpg";
 
 const Navbar = () => {
   const { logout } = useContext(AuthContext);
+
   return (
     <div className="sticky top-0 bg-gray-50 border-b-2 border-gray-200 w-full flex px-1 justify-between items-center py-2 cursor-pointer">
       <div className="flex gap-4 md:gap-2 items-center">
         <h1 className="font-bold logo text-2xl md:w-5/12">
           <NavLink to="/">MernBlog</NavLink>
         </h1>
-        <input
-          type="text"
-          placeholder="Search for blog..."
-          className="placeholder:text-sm outline-none bg-gray-100 rounded-md p-1 w-7/12 md:w-10/12"
-        />
+        {window.location.pathname === "/" && (
+          <input
+            type="text"
+            placeholder="Search for blog..."
+            className="placeholder:text-sm outline-none bg-gray-100 rounded-md p-1 w-7/12 md:w-10/12"
+          />
+        )}
       </div>
 
       <div className="flex items-center gap-1">
@@ -34,12 +37,14 @@ const Navbar = () => {
           </li>
         </div>
         <div>
-          <img
-            id="profile-image"
-            src={profile}
-            alt="profile"
-            className="w-14 rounded-full"
-          />
+          <NavLink to="/user-profile">
+            <img
+              id="profile-image"
+              src={profile}
+              alt="profile"
+              className="w-14 rounded-full"
+            />
+          </NavLink>
         </div>
       </div>
     </div>
