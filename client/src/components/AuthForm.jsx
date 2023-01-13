@@ -14,6 +14,7 @@ export default function AuthForm() {
       name: e.target[0].value,
       email: e.target[1].value,
       password: e.target[2].value,
+      file: e.target[3].files[0],
     };
 
     register(userInputData);
@@ -54,6 +55,7 @@ export default function AuthForm() {
         placeholder="password"
         className="p-2 outline-none border-2 focus:border-blue-500 rounded-md"
       />
+      {!isRegistered && <input type="file" />}
       {isRegistered && (
         <p className="text-center">
           Don't have an account?{" "}

@@ -13,7 +13,11 @@ export default function Profile() {
   return (
     <div className="">
       <div className="flex gap-2 items-center mt-5">
-        <img src={profile} alt="profile" className="w-20 rounded-full" />
+        <img
+          src={user.profilePicture}
+          alt="profile"
+          className="w-20 h-20 rounded-full"
+        />
         <h1 className="font-semibold text-4xl opacity-75">{user.name}</h1>
       </div>
       <div>

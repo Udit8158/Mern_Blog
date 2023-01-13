@@ -1,6 +1,8 @@
 import axios, { axiosAuth } from "../api/Axios";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { storage } from "../firebase.config";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 export const AuthContext = createContext({
   user: null,
@@ -15,10 +17,27 @@ const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(localStorageData && localStorageData.user);
   const navigate = useNavigate();
 
+  // Helper function for upload imgae
+  const uploadFile = async (fileName, file) => {
+    const storageRef = ref(storage, `images/profil_picture/${fileName}`);
+
+    const uploadTask = await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(uploadTask.ref);
+
+    return url;
+  };
+
   // Register
   const registerHandler = async (userData) => {
     try {
-      const res = await axios.post("/api/v1/auth/register", userData, {
+      // Get photo url from firebase after upload
+      const profilePicture = await uploadFile(userData.name, userData.file);
+
+      // Create user info with profile picture
+      const userInfo = { ...userData, profilePicture };
+
+      // register the user
+      const res = await axios.post("/api/v1/auth/register", userInfo, {
         headers: {
           "Content-Type": "application/json",
         },

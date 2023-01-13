@@ -10,7 +10,8 @@ const register = async (req, res) => {
     if (!errors.isEmpty())
       return res.status(400).json({ errors: errors.array() });
 
-    const { name, email, password } = req.body;
+    const { name, email, password, profilePicture } = req.body;
+    // console.log(profilePicture);
     const user = await User.findOne({ email });
 
     // check for conflicting
@@ -20,7 +21,13 @@ const register = async (req, res) => {
     const hashPassword = await bcrypt.hash(password, 10);
 
     // Create and save new user
-    const newUser = new User({ name, email, password: hashPassword });
+    const newUser = new User({
+      name,
+      email,
+      password: hashPassword,
+      profilePicture,
+    });
+    // console.log(newUser);
     await newUser.save();
 
     const accessToken = createAccessToken({

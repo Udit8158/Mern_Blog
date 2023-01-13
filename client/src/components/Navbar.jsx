@@ -4,7 +4,8 @@ import { AuthContext } from "../context/AuthContext";
 import profile from "../profile.jpg";
 
 const Navbar = () => {
-  const { logout } = useContext(AuthContext);
+  const { logout, user } = useContext(AuthContext);
+  // console.log(user.profilePicture);
 
   return (
     <div className="sticky top-0 bg-gray-50 border-b-2 border-gray-200 w-full flex px-1 justify-between items-center py-2 cursor-pointer">
@@ -40,9 +41,10 @@ const Navbar = () => {
           <NavLink to="/user-profile">
             <img
               id="profile-image"
-              src={profile}
+              src={user.profilePicture}
               alt="profile"
-              className="w-14 rounded-full"
+              className="w-14 h-14 rounded-full "
+              // style={{ borderRadius: "1000%" }}
             />
           </NavLink>
         </div>
