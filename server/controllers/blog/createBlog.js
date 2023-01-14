@@ -18,6 +18,7 @@ const createBlog = async (req, res) => {
       title: req.body.title,
       content: req.body.content,
       author: req.user.name,
+      authorProfilePicture: req.body.authorProfilePicture,
       coverPicture: req.body.coverPicture ? req.body.coverPicture : "",
       catagories: req.body.catagories ? req.body.catagories : [],
     });

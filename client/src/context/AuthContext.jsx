@@ -48,7 +48,8 @@ const AuthContextProvider = ({ children }) => {
       });
 
       // setting user
-      setUser(() => res.data);
+      console.log(res.data);
+      setUser(res.data);
       localStorage.setItem("mern-blog", JSON.stringify({ user: res.data }));
       navigate("/");
     } catch (e) {

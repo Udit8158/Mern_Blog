@@ -44,6 +44,7 @@ export default function EditBlog() {
           title: inputData.title,
           content: inputData.content,
           coverPicture: url,
+          authorProfilePicture: user.profilePicture,
           catagories: inputData.catagories.trim().split(","),
         },
         {
@@ -126,7 +127,7 @@ export default function EditBlog() {
       <input
         type="text"
         placeholder="Add tags of your blog seperated by comma "
-        className="outline-none border-none border-0 placeholder:font-light focus:outline-0 mt-3 mb-5"
+        className="outline-none border-none border-0 placeholder:font-light focus:outline-0 mt-3 mb-5 text-sm md:text-lg"
         onChange={(e) =>
           setInputData((curr) => {
             return { ...curr, catagories: e.target.value };

@@ -11,6 +11,7 @@ import jwt_decode from "jwt-decode";
 
 const App = () => {
   const { user, refresh } = useContext(AuthContext);
+  // console.log(user);
 
   // Refresh the tokens
   axiosAuth.interceptors.request.use(

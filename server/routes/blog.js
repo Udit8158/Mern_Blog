@@ -17,8 +17,8 @@ blogRoute
   .post(
     verifyToken,
     [
-      body("title").isString().notEmpty().isLength({ min: 6, max: 30 }),
-      body("content").isString().notEmpty().isLength({ min: 10, max: 1000 }),
+      body("title").isString().notEmpty().isLength({ min: 6, max: 100 }),
+      body("content").isString().notEmpty().isLength({ min: 10, max: 10000 }),
     ],
     createBlog
   );
@@ -29,8 +29,8 @@ blogRoute
   .patch(
     verifyToken,
     [
-      body("title").isString().notEmpty().isLength({ min: 6, max: 30 }),
-      body("content").isString().notEmpty().isLength({ min: 10, max: 1000 }),
+      body("title").isString().notEmpty().isLength({ min: 6, max: 100 }),
+      body("content").isString().notEmpty().isLength({ min: 10, max: 10000 }),
     ],
     updateBlog
   )

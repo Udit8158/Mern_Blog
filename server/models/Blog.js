@@ -11,16 +11,20 @@ const blogSchema = mongoose.Schema(
     content: {
       type: String,
       required: true,
+      min: 5,
     },
     author: {
       type: String,
       required: true,
       immutable: true,
     },
+    authorProfilePicture: {
+      type: String,
+      required: true,
+    },
     coverPicture: {
       type: String,
-      // required: true,
-      default: "",
+      required: true,
     },
     likes: {
       type: [String],
@@ -35,6 +39,10 @@ const blogSchema = mongoose.Schema(
       required: true,
       default: [],
       max: 5,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
     },
   },
   { timeStamps: true }
