@@ -21,7 +21,7 @@ const App = () => {
         const decodedToken = await jwt_decode(user.accessToken);
         // console.log("Decoded token: " + decodedToken);
         if (decodedToken.exp * 1000 < currDate.getTime()) {
-          console.log("refresh");
+          // console.log("refresh");
           const newAccessToken = await refresh();
           // console.log(newAccessToken);
           config.headers["authorization"] = "Bearer " + newAccessToken;

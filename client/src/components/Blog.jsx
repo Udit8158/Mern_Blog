@@ -5,7 +5,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 export default function Blog({ post }) {
   return (
-    <div className="flex flex-col md:gap-2  items-center cursor-pointer">
+    <div className="flex flex-col md:gap-2  items-center cursor-pointer shadow-lg  bg-gray-50 rounded-2xl p-2 hover:shadow-2xl duration-300">
       <div className="flex items-center justify-start w-full gap-3">
         <img src={img} alt="profile" className="w-10 rounded-full" />
         <p>{post.author}</p>
