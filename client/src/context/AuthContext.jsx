@@ -79,10 +79,11 @@ const AuthContextProvider = ({ children }) => {
     try {
       const res = await axios.get("/api/v1/auth/refresh");
 
-      const updatedUser = { ...user, accessToken: res.data.accessToken };
+      const updatedUser = { ...user, accessToken: res.data.access_token };
       localStorage.setItem("mern-blog", JSON.stringify({ user: updatedUser }));
       setUser(updatedUser);
-      return res.data.accessToken;
+      // console.log(res.data);
+      return res.data.access_token;
     } catch (err) {
       console.log(err);
     }

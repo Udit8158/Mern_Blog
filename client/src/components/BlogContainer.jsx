@@ -30,6 +30,7 @@ export default function BlogContainer() {
       } catch (error) {
         // fetch error
         dispatch(fetchError());
+        console.log(error);
       }
     };
 
