@@ -1,2 +1,2 @@
 node_modules
-.env
+# .env  # problem when .env not here after git clone also it is not there.

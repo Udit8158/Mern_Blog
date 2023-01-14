@@ -12,26 +12,30 @@ export const AuthContext = createContext({
   refresh: () => {},
 });
 
+// Helper function for upload imgae
+export const uploadFile = async (folderName, fileName, file) => {
+  const storageRef = ref(storage, `images/${folderName}/${fileName}`);
+
+  const uploadTask = await uploadBytes(storageRef, file);
+  const url = await getDownloadURL(uploadTask.ref);
+
+  return url;
+};
+
 const AuthContextProvider = ({ children }) => {
   const localStorageData = JSON.parse(localStorage.getItem("mern-blog"));
   const [user, setUser] = useState(localStorageData && localStorageData.user);
   const navigate = useNavigate();
 
-  // Helper function for upload imgae
-  const uploadFile = async (fileName, file) => {
-    const storageRef = ref(storage, `images/profil_picture/${fileName}`);
-
-    const uploadTask = await uploadBytes(storageRef, file);
-    const url = await getDownloadURL(uploadTask.ref);
-
-    return url;
-  };
-
   // Register
   const registerHandler = async (userData) => {
     try {
       // Get photo url from firebase after upload
-      const profilePicture = await uploadFile(userData.name, userData.file);
+      const profilePicture = await uploadFile(
+        "profile_picture",
+        userData.name,
+        userData.file
+      );
 
       // Create user info with profile picture
       const userInfo = { ...userData, profilePicture };

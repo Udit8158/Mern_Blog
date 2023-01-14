@@ -19,6 +19,7 @@ const blogSlice = createSlice({
       state.isError = false;
       state.blogs = action.payload;
     },
+
     fetchError: (state) => {
       (state.isError = true), (state.isLoading = false);
     },
